@@ -53,7 +53,13 @@ def build():
         safe_file('assets/social/' + item['id'] + '.jpg')
         page = SITE / 'items' / item['id'] / 'index.html'
         page.parent.mkdir(parents=True, exist_ok=True)
-        page.write_text(render_item(item, ROOT))
+        rendered = render_item(item, ROOT)
+        page.write_text(rendered)
+        # Also support the repository's existing main-branch Pages publishing source.
+        # Both publishing methods must serve the same share pages.
+        branch_page = ROOT / 'items' / item['id'] / 'index.html'
+        branch_page.parent.mkdir(parents=True, exist_ok=True)
+        branch_page.write_text(rendered)
     (SITE / '.nojekyll').touch()
     print(f'Validated {len(catalog)} original files; {counts["infographics"]} infographics, {counts["spam"]} spam, {counts["duplicates"]} repeats.')
     print(f'Built {len(catalog)} static share pages with distinct Open Graph and X image previews.')

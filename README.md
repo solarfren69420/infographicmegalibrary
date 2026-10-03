@@ -36,6 +36,8 @@ The untouched export was backed up locally beside this project as `Infographic M
 
 ## GitHub Pages setup
 
+Publishing from `main` and `/(root)` is supported: generated share pages are checked in under `items/`, and `.nojekyll` keeps the static output intact. The Actions workflow also supports publishing the validated `_site/` output. Both serve the same gallery and share pages.
+
 1. Open this repository’s **Settings → Pages**.
 2. Set **Source** to **GitHub Actions**.
 3. In **Actions → Publish infographic library**, use **Run workflow** on `main` (or rerun the initial run).

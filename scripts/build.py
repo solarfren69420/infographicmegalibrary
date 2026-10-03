@@ -3,6 +3,7 @@
 from pathlib import Path
 from collections import Counter
 import hashlib, json, shutil
+from sharepages import render_item
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / '_site'
@@ -47,8 +48,15 @@ def build():
     shutil.copy2(ROOT / 'index.html', SITE / 'index.html')
     for folder in PUBLIC_FOLDERS:
         shutil.copytree(ROOT / folder, SITE / folder)
+    safe_file('assets/social/library.jpg')
+    for item in catalog:
+        safe_file('assets/social/' + item['id'] + '.jpg')
+        page = SITE / 'items' / item['id'] / 'index.html'
+        page.parent.mkdir(parents=True, exist_ok=True)
+        page.write_text(render_item(item, ROOT))
     (SITE / '.nojekyll').touch()
     print(f'Validated {len(catalog)} original files; {counts["infographics"]} infographics, {counts["spam"]} spam, {counts["duplicates"]} repeats.')
+    print(f'Built {len(catalog)} static share pages with distinct Open Graph and X image previews.')
     print(f'Staged {sum(p.stat().st_size for p in SITE.rglob("*") if p.is_file()) / 1024 / 1024:.1f} MiB for GitHub Pages. Raw chat and local backup excluded.')
 
 if __name__ == '__main__': build()

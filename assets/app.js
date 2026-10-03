@@ -8,7 +8,15 @@ let category = 'all';
 let visible = [];
 let current = null;
 let lastFocused = null;
+let disposeZoom = null;
 const buttons = [];
+
+function pagePath(item) { return `items/${item.id}/`; }
+function openFromLink(event, item) {
+  if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+  event.preventDefault();
+  openItem(item.id);
+}
 
 function element(tag, className, text) {
   const node = document.createElement(tag);
@@ -57,8 +65,8 @@ function render() {
   $('gallery').replaceChildren();
   for (const item of visible) {
     const card = element('article', 'card');
-    const preview = element('button', 'preview');
-    preview.type = 'button';
+    const preview = element('a', 'preview');
+    preview.href = pagePath(item);
     preview.setAttribute('aria-label', `View ${item.title}`);
     if (item.thumbnail) {
       const img = element('img');
@@ -69,13 +77,13 @@ function render() {
       preview.classList.add('text-preview');
       preview.textContent = 'TEXT PROMPT\n\nPostal 2\n+ Minecraft\n\n↗ Read the prompt';
     }
-    preview.addEventListener('click', () => openItem(item.id));
+    preview.addEventListener('click', event => openFromLink(event, item));
     const body = element('div', 'card-body');
     body.append(element('p', 'card-category', item.category));
     if (item.category === 'Subscriptions & offers') body.append(element('span', 'badge', 'Archived · unverified'));
     const heading = element('h2');
-    const title = element('button', 'title-button', item.title);
-    title.type = 'button'; title.addEventListener('click', () => openItem(item.id));
+    const title = element('a', 'title-button', item.title);
+    title.href = pagePath(item); title.addEventListener('click', event => openFromLink(event, item));
     heading.append(title); body.append(heading);
     const footer = element('div', 'card-footer');
     footer.append(element('span', '', `${item.extension.toUpperCase()} · ${(item.bytes / 1024 / 1024).toFixed(1)} MB`));
@@ -102,9 +110,11 @@ function openItem(id, updateHash = true) {
   $('viewer-category').textContent = item.category;
   $('viewer-note').textContent = item.collection === 'spam' ? 'Filed as spam using the image and the surrounding chat. Preserved separately from the main library.' : item.collection === 'duplicates' ? `Exact repeated upload of ${byId.get(item.duplicateOf).title}.` : item.category === 'Subscriptions & offers' ? 'Archived image. Offer details, deadlines, payment options, and terms have not been verified.' : 'View the original file to read small text. The archive’s claims and setup instructions have not been independently verified.';
   const media = $('viewer-media'); media.replaceChildren();
+  if (disposeZoom) { disposeZoom(); disposeZoom = null; }
+  $('viewer-zoom').hidden = !item.thumbnail;
   if (item.thumbnail) {
-    const link = element('a'); link.href = item.path; link.target = '_blank'; link.rel = 'noopener'; link.setAttribute('aria-label', `Open full-size ${item.title}`);
-    const img = element('img'); img.src = item.path; img.alt = item.title; link.append(img); media.append(link);
+    const img = element('img'); img.src = item.path; img.alt = item.title;
+    disposeZoom = window.attachImageZoom(media, img, $('viewer-zoom'));
   } else {
     const pre = element('pre', '', 'Loading prompt…'); media.append(pre);
     fetch(item.path).then(response => { if (!response.ok) throw new Error('Prompt unavailable'); return response.text(); }).then(text => { if (current.id === item.id) pre.textContent = text; }).catch(() => { pre.textContent = 'Use “Open original” to read this text file.'; });
@@ -114,6 +124,7 @@ function openItem(id, updateHash = true) {
     $('viewer-meta').append(element('dt', '', label), element('dd', '', value));
   }
   $('original-link').href = item.path;
+  $('share-link').href = pagePath(item);
   $('download-link').href = item.path;
   $('download-link').download = item.path.split('/').pop();
   const nav = navigationItems(); const index = nav.findIndex(entry => entry.id === id);
@@ -131,7 +142,7 @@ $('next').addEventListener('click', () => move(1));
 $('close-viewer').addEventListener('click', () => $('viewer').close());
 $('viewer').addEventListener('click', event => { if (event.target === $('viewer')) { const r = $('viewer').getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) $('viewer').close(); } });
 $('viewer').addEventListener('close', () => { history.replaceState(null, '', location.pathname + location.search); if (lastFocused?.isConnected) lastFocused.focus(); });
-document.addEventListener('keydown', event => { if (!$('viewer').open || ['INPUT', 'SELECT', 'TEXTAREA'].includes(event.target.tagName)) return; if (event.key === 'ArrowLeft') { event.preventDefault(); move(-1); } if (event.key === 'ArrowRight') { event.preventDefault(); move(1); } });
+document.addEventListener('keydown', event => { if (!$('viewer').open || event.target.closest('.zoomable') || ['INPUT', 'SELECT', 'TEXTAREA'].includes(event.target.tagName)) return; if (event.key === 'ArrowLeft') { event.preventDefault(); move(-1); } if (event.key === 'ArrowRight') { event.preventDefault(); move(1); } });
 window.addEventListener('hashchange', () => { const id = location.hash.slice(1); if (byId.has(id)) openItem(id, false); else if ($('viewer').open) $('viewer').close(); });
 render();
 if (byId.has(location.hash.slice(1))) openItem(location.hash.slice(1), false);

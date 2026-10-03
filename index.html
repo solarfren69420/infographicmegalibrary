@@ -6,15 +6,34 @@
   <title>Infographic Mega Library</title>
   <meta name="description" content="Browse SolarFren’s organized infographic library: Rust, game systems, reverse engineering, AI tools, and game mashup concepts.">
   <meta name="theme-color" content="#10151d">
+  <link rel="canonical" href="https://solarfren69420.github.io/infographicmegalibrary/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Infographic Mega Library">
+  <meta property="og:title" content="Infographic Mega Library">
+  <meta property="og:description" content="Explore 32 infographics across 8 topics: Rust, game systems, reverse engineering, AI tools, and game mashup concepts.">
+  <meta property="og:url" content="https://solarfren69420.github.io/infographicmegalibrary/">
+  <meta property="og:image" content="https://solarfren69420.github.io/infographicmegalibrary/assets/social/library.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Infographic Mega Library cover featuring Rust, game systems, and reverse engineering infographics.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Infographic Mega Library">
+  <meta name="twitter:description" content="Explore 32 infographics across 8 topics: Rust, game systems, reverse engineering, AI tools, and game mashup concepts.">
+  <meta name="twitter:image" content="https://solarfren69420.github.io/infographicmegalibrary/assets/social/library.jpg">
+  <meta name="twitter:image:alt" content="Infographic Mega Library cover featuring Rust, game systems, and reverse engineering infographics.">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/item.css">
+  <link rel="stylesheet" href="assets/zoom.css">
   <script src="assets/catalog.js" defer></script>
+  <script src="assets/zoom.js" defer></script>
   <script src="assets/app.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to gallery</a>
   <header class="masthead">
-    <a class="brand" href="./" aria-label="Infographic Mega Library home"><span class="brand-icon" aria-hidden="true">▥</span><span>INFOGRAPHIC<span class="brand-sub">MEGA LIBRARY</span></span></a>
+    <a class="brand" href="./" aria-label="Infographic Mega Library home"><img class="brand-avatar" src="assets/solarfren.png" alt="SolarFren"><span>INFOGRAPHIC<span class="brand-sub">MEGA LIBRARY</span></span></a>
     <a class="repo-link" href="https://github.com/solarfren69420/infographicmegalibrary" target="_blank" rel="noopener">View on GitHub ↗</a>
   </header>
   <div class="layout">
@@ -41,7 +60,7 @@
   </div>
   <dialog id="viewer" aria-labelledby="viewer-title">
     <div class="viewer-bar"><span id="viewer-category"></span><button id="close-viewer" type="button" aria-label="Close viewer">✕</button></div>
-    <div class="viewer-layout"><div class="media" id="viewer-media"></div><div class="viewer-details"><h2 id="viewer-title"></h2><p id="viewer-description"></p><p id="viewer-note" class="viewer-note"></p><dl id="viewer-meta"></dl><div class="viewer-actions"><a id="original-link" class="primary-link" target="_blank" rel="noopener">Open original ↗</a><a id="download-link" download>Download file ↓</a></div><div class="viewer-pagination"><button id="previous" type="button" aria-label="Previous item">← Previous</button><button id="next" type="button" aria-label="Next item">Next →</button></div></div></div>
+    <div class="viewer-layout"><div class="media-column"><div id="viewer-zoom" class="zoom-toolbar" aria-label="Image zoom controls"><button type="button" data-zoom="out" aria-label="Zoom out">−</button><span data-zoom-label role="status">100%</span><button type="button" data-zoom="in" aria-label="Zoom in">+</button><button type="button" data-zoom="fit">Fit</button><button type="button" data-zoom="actual">100%</button></div><div class="media" id="viewer-media"></div></div><div class="viewer-details"><h2 id="viewer-title"></h2><p id="viewer-description"></p><p id="viewer-note" class="viewer-note"></p><dl id="viewer-meta"></dl><div class="viewer-actions"><a id="original-link" class="primary-link" target="_blank" rel="noopener">Open original ↗</a><a id="share-link">Share page ↗</a><a id="download-link" download>Download file ↓</a></div><div class="viewer-pagination"><button id="previous" type="button" aria-label="Previous item">← Previous</button><button id="next" type="button" aria-label="Next item">Next →</button></div></div></div>
   </dialog>
 </body>
 </html>

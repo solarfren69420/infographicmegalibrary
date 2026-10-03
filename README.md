@@ -22,7 +22,9 @@ SolarFren’s collection of AI-generated infographic concepts and archived guide
 | `spam/` | Chat-confirmed fake infographics, memes, and reactions | 8 |
 | `duplicates/` | Exact repeated uploads | 3 |
 
-Spam and repeated uploads are excluded from the gallery’s default view. They remain accessible in separate collections. Useful references and the human-written text prompt are retained rather than treated as spam. The gallery supports topic navigation, search, sorting, full-size viewing, original downloads, and item links such as `#item-01`.
+Spam and repeated uploads are excluded from the gallery’s default view. They remain accessible in separate collections. Useful references and the human-written text prompt are retained rather than treated as spam. The gallery supports topic navigation, search, sorting, original downloads, and an image reader with zoom in/out, fit, 100% original-pixel size, scrolling, and drag-to-pan. SolarFren’s supplied portrait appears in the header and share cards.
+
+Each file has a static share page such as `items/item-01/`, with its own title, description, canonical URL, and 1200 × 630 Open Graph/X preview image. Use **Share page** in the viewer or **Copy share link** on the individual page when sharing. Gallery fragments such as `#item-01` remain supported for browsing, but individual page links give shared items distinct previews.
 
 ## Archive accounting
 
@@ -52,6 +54,10 @@ python3 -m http.server 8000 --directory _site
 Open http://localhost:8000/. Opening `index.html` directly also works for image browsing; read text prompts through their original-file links when browser local-file restrictions apply.
 
 For updates, add original files to their topic folders, generate WebP thumbnails, and add metadata to `data/catalog.json`. Update the organization report and validation counts if the collection grows. Run `python3 scripts/build.py` to verify all hashes, references, duplicate relationships, and file accounting, regenerate `assets/catalog.js`, and stage only public material in `_site/`.
+
+## Link preview images
+
+Preview images are checked in under `assets/social/`; publishing does not require Chrome. To regenerate them after changing titles, thumbnails, or branding, run `node scripts/social-cards.cjs` locally with Google Chrome and the Node `undici` module available, then run `python3 scripts/build.py`. The renderer uses existing source images and a temporary browser profile. Platforms decide how to display previews and may cache an older version.
 
 ## Catalog
 

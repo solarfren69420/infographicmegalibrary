@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-label="SolarFren's complete beginner handbook: from your first folder to your first tested project">
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#10151d"/><stop offset="1" stop-color="#17413f"/></linearGradient></defs>
+<rect width="1200" height="420" rx="22" fill="url(#bg)"/>
+<rect x="2" y="2" width="1196" height="416" rx="20" fill="none" stroke="#46e9ca" stroke-width="3"/>
+<path d="M1032 30v96h98M998 62v97h98" fill="none" stroke="#c6a0ff" stroke-width="6"/>
+<text x="48" y="62" fill="#46e9ca" font-family="Arial,sans-serif" font-size="20" font-weight="700" letter-spacing="3">SOLARFREN · INFOGRAPHIC MEGA LIBRARY</text>
+<text x="45" y="140" fill="#ffffff" font-family="Arial,sans-serif" font-size="54" font-weight="700">THE COMPLETE</text>
+<text x="45" y="205" fill="#ffffff" font-family="Arial,sans-serif" font-size="54" font-weight="700">BEGINNER HANDBOOK</text>
+<text x="48" y="258" fill="#d5e5ec" font-family="Arial,sans-serif" font-size="28">From your first folder to your first tested project.</text>
+<rect x="48" y="290" width="207" height="44" rx="9" fill="#46e9ca"/>
+<rect x="271" y="290" width="207" height="44" rx="9" fill="#69b7ff"/>
+<rect x="494" y="290" width="228" height="44" rx="9" fill="#ffd36d"/>
+<text x="70" y="319" fill="#10151d" font-family="Arial,sans-serif" font-size="21" font-weight="700">21 CHAPTERS</text>
+<text x="291" y="319" fill="#10151d" font-family="Arial,sans-serif" font-size="21" font-weight="700">3 APPENDICES</text>
+<text x="514" y="319" fill="#10151d" font-family="Arial,sans-serif" font-size="21" font-weight="700">66-PAGE PDF</text>
+<text x="48" y="380" fill="#c7d6df" font-family="Arial,sans-serif" font-size="23">Windows · macOS · Linux   |   Read the entire book below.</text>
+</svg>

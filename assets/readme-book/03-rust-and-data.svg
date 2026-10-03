@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="166" viewBox="0 0 1200 166" role="img" aria-label="Understand Rust and game systems">
+<rect width="1200" height="166" rx="16" fill="#132631"/>
+<rect x="0" y="0" width="9" height="166" rx="4" fill="#ffd36d"/>
+<text x="36" y="36" fill="#ffd36d" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="3">PART THREE</text>
+<text x="35" y="86" fill="#f4f8fb" font-family="Arial,sans-serif" font-size="39" font-weight="700">Understand Rust and game systems</text>
+<text x="36" y="130" fill="#c7d6df" font-family="Arial,sans-serif" font-size="23">Chapters 8–10 · A real program, reusable rules, and organized data</text>
+</svg>

@@ -48,6 +48,10 @@ def build():
     shutil.copy2(ROOT / 'index.html', SITE / 'index.html')
     for folder in PUBLIC_FOLDERS:
         shutil.copytree(ROOT / folder, SITE / folder)
+    # The handbook and its reviewed companion files are public additions,
+    # separate from the 49 preserved original attachment records.
+    safe_file('guides/Infographic-Mega-Library-Beginner-Handbook.pdf')
+    shutil.copytree(ROOT / 'guides', SITE / 'guides')
     safe_file('assets/social/library.jpg')
     for item in catalog:
         safe_file('assets/social/' + item['id'] + '.jpg')

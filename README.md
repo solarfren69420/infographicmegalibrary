@@ -1,8 +1,14 @@
 # Infographic Mega Library
 
-Browse: **https://solarfren69420.github.io/infographicmegalibrary/** (available after GitHub Pages is enabled).
+[![Open SolarFren's live Infographic Mega Library](assets/readme-live-banner.svg)](https://solarfren69420.github.io/infographicmegalibrary/)
 
-SolarFren’s collection of AI-generated infographic concepts and archived guides, organized using the images and their original Discord discussion. These images are brainstorming and educational material, not demonstrations of working mods or software. Setup commands, offers, payment methods, and technical claims have not been independently verified. Open full-size originals at high zoom.
+## 🚨 [OPEN THE LIVE LIBRARY](https://solarfren69420.github.io/infographicmegalibrary/) 🚨
+
+### 📖 [DOWNLOAD THE BEGINNER HANDBOOK — PDF](https://solarfren69420.github.io/infographicmegalibrary/guides/Infographic-Mega-Library-Beginner-Handbook.pdf)
+
+**Windows · macOS · Linux** — Full-size printable guide with a clickable table of contents, plain-language explanations, cleaned-up AI prompts, a glossary, and a source coverage index. [Try the beginner browser exercise](https://solarfren69420.github.io/infographicmegalibrary/guides/exercises/mechanics-playground.html).
+
+SolarFren’s collection of AI-generated infographic concepts and archived guides, organized using the images and their original Discord discussion. The images were intended as one-shot brainstorming, frame-of-reference material, and copy-paste starting prompts for AI assistants; they are not 100% accurate technical manuals or demonstrations of completed software. Their original claims remain preserved as supplied. The companion handbook consolidates the ideas, checks selected practical instructions against primary documentation, and distinguishes tested teaching exercises from unverified concepts. Open full-size original images at high zoom.
 
 ## Collections
 
@@ -56,6 +62,12 @@ python3 -m http.server 8000 --directory _site
 Open http://localhost:8000/. Opening `index.html` directly also works for image browsing; read text prompts through their original-file links when browser local-file restrictions apply.
 
 For updates, add original files to their topic folders, generate WebP thumbnails, and add metadata to `data/catalog.json`. Update the organization report and validation counts if the collection grows. Run `python3 scripts/build.py` to verify all hashes, references, duplicate relationships, and file accounting, regenerate `assets/catalog.js`, and stage only public material in `_site/`.
+
+## Beginner handbook
+
+The checked-in PDF is ready to download and does not require visitors to install tools. Its editable source is [guides/beginner-handbook.md](guides/beginner-handbook.md); [guides/sources.json](guides/sources.json) holds the primary references, and the source index is generated from the catalog. The small companion exercises live in [guides/exercises/](guides/exercises/).
+
+To regenerate the PDF locally, use Python 3.10+ with ReportLab 5 and Pillow installed, then run `python3 scripts/build_handbook.py`. The generator embeds DejaVu fonts from a standard Linux font path or a folder provided with `--font-dir`. The Pages build publishes the ready PDF; it does not need to install the PDF toolchain.
 
 ## Link preview images
 

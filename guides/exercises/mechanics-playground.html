@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SolarFren · Mechanics Playground</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#10151d;color:#edf4f7;font:17px/1.55 system-ui,sans-serif}main{max-width:940px;margin:auto;padding:24px}h1{margin-bottom:8px}button{font:inherit;padding:8px 16px;border:1px solid #53707d;border-radius:8px;background:#203641;color:white;cursor:pointer}button:disabled{opacity:.5}button:focus-visible,a:focus-visible{outline:3px solid #46e9ca}a{color:#46e9ca}.panel{padding:18px;background:#19232e;border:1px solid #324552;border-radius:12px;margin:20px 0}.controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.grid{display:grid;grid-template-columns:repeat(8,1fr);gap:5px;max-width:520px}.cell{aspect-ratio:1;padding:0;min-width:0;background:#14212b}.cell.filled{background:#23b699;color:#051711}.cell.player{outline:3px solid #ffd56e;outline-offset:-4px}progress{width:160px;accent-color:#46e9ca}.muted{color:#aec1cb}.status{min-height:2em}kbd{padding:2px 6px;background:#304351;border-radius:3px}
+</style>
+<main>
+<p class="muted">SOLARFREN'S BEGINNER HANDBOOK · EXERCISE 1</p>
+<h1>Mechanics Playground</h1>
+<p>A small learning model: movement, stamina, and placing blocks. These are invented rules, with no commercial game files or online service.</p>
+<section class="panel" aria-labelledby="stamina-title"><h2 id="stamina-title">1. Stamina and roll</h2>
+<p>Start with 100 stamina. A roll costs 20. One recovery adds 10, up to 100. A roll does not move the marker in this exercise.</p>
+<div class="controls"><button id="roll">Roll (−20)</button><button id="recover">Recover (+10)</button><label>Stamina <progress id="meter" value="100" max="100"></progress> <strong id="amount">100 / 100</strong></label></div>
+<p id="roll-status" class="status" role="status">Ready. Try five rolls, then a sixth.</p></section>
+<section class="panel" aria-labelledby="grid-title"><h2 id="grid-title">2. Movement and blocks</h2>
+<p>Click an empty square to place a block, or a block to remove it. The yellow square is your player. Blocks prevent movement. You cannot place one on the player.</p>
+<div id="grid" class="grid" role="group" aria-label="Eight by eight practice world"></div>
+<p>Use the buttons, or <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd>. Keyboard movement works when focus is outside the grid buttons. Rows and columns start at 1.</p>
+<div class="controls"><button data-move="0,-1">↑ Up</button><button data-move="-1,0">← Left</button><button data-move="1,0">Right →</button><button data-move="0,1">↓ Down</button></div>
+<p id="world-status" class="status" role="status">Ready.</p></section>
+<section class="panel"><h2>3. Test and reset</h2><p>Check: a sixth roll is refused; recovery stops at 100; a placed block stops movement; clicking it again removes it; you cannot leave the grid.</p><button id="reset">Reset everything</button><p class="muted">Changes exist only in this browser tab. Reloading starts fresh. No tracking, network requests, account, or saved personal data.</p><a href="https://solarfren69420.github.io/infographicmegalibrary/">Back to the library</a></section>
+</main>
+<script>
+'use strict';
+let stamina=100,player={x:3,y:3};const blocks=new Set();
+const el=id=>document.getElementById(id);const cells=[];
+for(let y=0;y<8;y++)for(let x=0;x<8;x++){
+ const b=document.createElement('button');b.className='cell';b.type='button';
+ b.addEventListener('click',()=>{
+  if(x===player.x&&y===player.y){el('world-status').textContent='That square holds the player. Choose another square.';return;}
+  const key=x+','+y;if(blocks.has(key)){blocks.delete(key);el('world-status').textContent='Block removed.';}else{blocks.add(key);el('world-status').textContent='Block placed.';}render();
+ });el('grid').append(b);cells.push({b,x,y});
+}
+function render(){
+ el('meter').value=stamina;el('amount').textContent=stamina+' / 100';
+ for(const {b,x,y}of cells){const filled=blocks.has(x+','+y),here=x===player.x&&y===player.y;b.classList.toggle('filled',filled);b.classList.toggle('player',here);b.textContent=here?'●':filled?'■':'';b.setAttribute('aria-label',`Row ${y+1}, column ${x+1}: ${here?'player':filled?'block':'empty'}`);b.setAttribute('aria-pressed',String(filled));}
+}
+function move(dx,dy){const x=player.x+dx,y=player.y+dy;if(x<0||x>7||y<0||y>7){el('world-status').textContent='World edge: move refused.';return;}if(blocks.has(x+','+y)){el('world-status').textContent='A block is in the way: move refused.';return;}player={x,y};el('world-status').textContent=`Player moved to row ${y+1}, column ${x+1}.`;render();}
+el('roll').addEventListener('click',()=>{if(stamina<20){el('roll-status').textContent='Not enough stamina. Recover before rolling again.';return;}stamina-=20;el('roll-status').textContent='Roll accepted. Spent 20 stamina.';render();});
+el('recover').addEventListener('click',()=>{stamina=Math.min(100,stamina+10);el('roll-status').textContent='Recovered stamina, capped at 100.';render();});
+document.querySelectorAll('[data-move]').forEach(b=>b.addEventListener('click',()=>move(...b.dataset.move.split(',').map(Number))));
+document.addEventListener('keydown',e=>{if(e.ctrlKey||e.altKey||e.metaKey||e.target.closest('.grid'))return;const directions={w:[0,-1],a:[-1,0],s:[0,1],d:[1,0]};const step=directions[e.key.toLowerCase()];if(step){e.preventDefault();move(...step);}});
+el('reset').addEventListener('click',()=>{stamina=100;player={x:3,y:3};blocks.clear();el('roll-status').textContent='Reset. Stamina is 100.';el('world-status').textContent='Reset. Player is at row 4, column 4.';render();});render();
+</script>
+</html>

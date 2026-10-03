@@ -1,0 +1,16 @@
+{
+  "edition": "2026-10-03",
+  "pages": 66,
+  "format": "A4",
+  "bodyFontPoints": 12,
+  "infographicsCovered": 32,
+  "bookmarks": 132,
+  "sources": 34,
+  "practiceFiles": [
+    "mechanics-playground.html",
+    "roll-demo.rs",
+    "roll.json",
+    "mechanics.sql"
+  ],
+  "scope": "Brainstorming ideas consolidated into beginner explanations; actual commercial-game projects remain concepts unless independently demonstrated."
+}

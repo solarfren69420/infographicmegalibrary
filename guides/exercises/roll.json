@@ -1,0 +1,14 @@
+{
+  "id": "demo.roll",
+  "source": "Mechanics Playground",
+  "status": "observed",
+  "description": "Spend stamina to accept a roll request",
+  "parameters": {
+    "maximum_stamina": 100,
+    "roll_cost": 20,
+    "recovery_per_action": 10
+  },
+  "units": "stamina points",
+  "dependencies": ["stamina", "roll_request"],
+  "verification": "five rolls accepted; sixth refused"
+}

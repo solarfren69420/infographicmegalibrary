@@ -1,0 +1,14 @@
+{
+  "sourceMessages": 295,
+  "sourceAttachmentReferences": 52,
+  "downloadedFiles": 49,
+  "uniqueDownloadedFiles": 46,
+  "infographics": 32,
+  "spam": 8,
+  "duplicates": 3,
+  "references": 3,
+  "textPrompts": 1,
+  "disclaimers": 2,
+  "missingOpeningImages": 3,
+  "recoveryNote": "The opening post has four content.png attachments but only one survived the export. The three other images could not be recovered (Discord HTTP 403). The surviving image is retained; its exact attachment ID is unresolved."
+}

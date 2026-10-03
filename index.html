@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Infographic Mega Library</title>
+  <meta name="description" content="Browse SolarFren’s organized infographic library: Rust, game systems, reverse engineering, AI tools, and game mashup concepts.">
+  <meta name="theme-color" content="#10151d">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/catalog.js" defer></script>
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to gallery</a>
+  <header class="masthead">
+    <a class="brand" href="./" aria-label="Infographic Mega Library home"><span class="brand-icon" aria-hidden="true">▥</span><span>INFOGRAPHIC<span class="brand-sub">MEGA LIBRARY</span></span></a>
+    <a class="repo-link" href="https://github.com/solarfren69420/infographicmegalibrary" target="_blank" rel="noopener">View on GitHub ↗</a>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" aria-label="Library collections">
+      <p class="nav-label">BROWSE THE LIBRARY</p>
+      <nav id="categories" aria-label="Topics"></nav>
+      <div class="archive-nav"><p class="nav-label">SEPARATE COLLECTIONS</p><nav id="separate" aria-label="Spam and repeated uploads"></nav></div>
+      <p class="sidebar-note">Original files preserved.<br>Spam and repeated uploads filed separately.</p>
+    </aside>
+    <main id="main">
+      <div class="page-heading"><div><p class="eyebrow">SOLARFREN’S COLLECTION</p><h1 id="heading">Explore the library</h1></div><span class="total-pill">32 infographics · 8 topics</span></div>
+      <p class="intro">Game systems, Rust, reverse engineering, and ideas for what to build next.</p>
+      <div class="notice"><span aria-hidden="true">ⓘ</span><p>These images are AI-generated concepts and archived guides. They don’t demonstrate working mods. Open the original images at high zoom to read the details.</p><button type="button" id="disclaimer-link">Read disclaimers</button></div>
+      <div class="controls">
+        <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search titles, games, tools…" aria-label="Search the library"></label>
+        <label class="sort-label">Sort <select id="sort"><option value="original">Original order</option><option value="title">Title A–Z</option><option value="newest">Newest first</option></select></label>
+      </div>
+      <div class="results-line"><p id="result-count" aria-live="polite"></p><button id="reset" type="button" hidden>Clear filters</button></div>
+      <section id="gallery" class="gallery" aria-label="Infographic gallery"></section>
+      <div id="empty" class="empty" hidden><h2>No matching items</h2><p>Try another title, game, or tool.</p><button id="empty-reset" type="button">Clear search and filters</button></div>
+      <noscript><p>Enable JavaScript to browse the gallery, or <a href="https://github.com/solarfren69420/infographicmegalibrary#catalog">browse the file catalog on GitHub</a>.</p></noscript>
+      <footer><span>Infographic Mega Library</span><a href="data/organization-report.json">Organization report</a></footer>
+    </main>
+  </div>
+  <dialog id="viewer" aria-labelledby="viewer-title">
+    <div class="viewer-bar"><span id="viewer-category"></span><button id="close-viewer" type="button" aria-label="Close viewer">✕</button></div>
+    <div class="viewer-layout"><div class="media" id="viewer-media"></div><div class="viewer-details"><h2 id="viewer-title"></h2><p id="viewer-description"></p><p id="viewer-note" class="viewer-note"></p><dl id="viewer-meta"></dl><div class="viewer-actions"><a id="original-link" class="primary-link" target="_blank" rel="noopener">Open original ↗</a><a id="download-link" download>Download file ↓</a></div><div class="viewer-pagination"><button id="previous" type="button" aria-label="Previous item">← Previous</button><button id="next" type="button" aria-label="Next item">Next →</button></div></div></div>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,5 @@
+/_archive/
+/_site/
+__pycache__/
+.DS_Store
+*.log
